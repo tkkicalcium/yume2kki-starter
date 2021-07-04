@@ -1,10 +1,24 @@
-#include <stdio.h>
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <stdio.h>
 
 #define RPG_RT_COMMAND L"cmd /c start \"\" /affinity 1 \"ゆめ2っき\\RPG_RT.exe\" 0 0 Window"
 
+void kbdreset()
+{
+	int c;
+	for (c = 1; c < 255; c++){
+		if (c == 93) continue; // contextmenu
+		keybd_event(c, 0, KEYEVENTF_KEYUP, (ULONG_PTR)NULL);
+	}
+}
+
 int main()
 {
+#ifdef WITH_KBD_RESET
+	kbdreset();
+#endif
+	
 	WCHAR binDirPath[MAX_PATH];
 	GetModuleFileNameW(NULL, binDirPath, MAX_PATH);
 	{

@@ -16,9 +16,12 @@ echo  build start.exe
 echo --------------------------------------------
 md dist > NUL 2>&1
 echo  Compiling...
-lib\\tcc\\tcc.exe -Wl,-subsystem=gui -o dist\\start.exe src\\start.c
+lib\\tcc\\tcc.exe -Wl,-subsystem=gui -luser32 -o dist\\start.exe src\\start.c
+lib\\tcc\\tcc.exe -Wl,-subsystem=gui -luser32 -DWITH_KBD_RESET -o dist\\start_kbdreset.exe src\\start.c
+
 echo  Attach icon...
 lib\\rcedit-x86.exe dist\\start.exe --set-icon src\\yume2kki.ico
+lib\\rcedit-x86.exe dist\\start_kbdreset.exe --set-icon src\\yume2kki.ico
 echo --------------------------------------------
 echo  Done!
 echo.
