@@ -7,7 +7,7 @@ md lib > NUL 2>&1
 
 echo  (1/2) Downloading tcc...
 md tmp > NUL 2>&1
-call powershell -c "$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27-win64-bin.zip -OutFile tmp\\tcc.zip"
+call powershell -c "$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri http://download.savannah.gnu.org/releases/tinycc/tcc-0.9.27-win32-bin.zip -OutFile tmp\\tcc.zip"
 echo.
 echo  Unzipping...
 call powershell -c "$ProgressPreference = 'SilentlyContinue'; Expand-Archive -Force -DestinationPath lib tmp\\tcc.zip"
