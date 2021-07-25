@@ -26,7 +26,7 @@ int main()
 		{
 			if (*p == '\\') pSlash=p;
 		}
-		*pSlash = '\0';
+		if (pSlash) *pSlash = '\0';
 	}
 	else {
 		fprintf(stderr,"GetModuleFileNameW error\n");
