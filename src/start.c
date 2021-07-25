@@ -19,7 +19,7 @@ int main()
 	kbdreset();
 #endif
 	
-	WCHAR binDirPath[MAX_PATH] = L"\0";
+	WCHAR binDirPath[MAX_PATH] = L"";
 	if (GetModuleFileNameW(NULL, binDirPath, MAX_PATH)) {
 		WCHAR *pSlash = NULL;
 		for (WCHAR *p = binDirPath; *p; ++p)
