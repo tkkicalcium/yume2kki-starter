@@ -19,15 +19,19 @@ int main()
 	kbdreset();
 #endif
 	
-	WCHAR binDirPath[MAX_PATH];
-	GetModuleFileNameW(NULL, binDirPath, MAX_PATH);
+	WCHAR binDirPath[MAX_PATH] = L"";
+	if (!GetModuleFileNameW(NULL, binDirPath, MAX_PATH)) {
+		fprintf(stderr,"GetModuleFileNameW error\n");
+		return -1;
+	}
+
 	{
 		WCHAR *pSlash = NULL;
 		for (WCHAR *p = binDirPath; *p; ++p)
 		{
 			if (*p == '\\') pSlash=p;
 		}
-		*pSlash = 0;
+		if (pSlash) *pSlash = '\0';
 	}
 
 	STARTUPINFO si = { sizeof(STARTUPINFO) };
