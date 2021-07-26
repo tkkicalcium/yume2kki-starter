@@ -20,17 +20,18 @@ int main()
 #endif
 	
 	WCHAR binDirPath[MAX_PATH] = L"";
-	if (GetModuleFileNameW(NULL, binDirPath, MAX_PATH)) {
+	if (!GetModuleFileNameW(NULL, binDirPath, MAX_PATH)) {
+		fprintf(stderr,"GetModuleFileNameW error\n");
+		return -1;
+	}
+
+	{
 		WCHAR *pSlash = NULL;
 		for (WCHAR *p = binDirPath; *p; ++p)
 		{
 			if (*p == '\\') pSlash=p;
 		}
 		if (pSlash) *pSlash = '\0';
-	}
-	else {
-		fprintf(stderr,"GetModuleFileNameW error\n");
-		return -1;
 	}
 
 	STARTUPINFO si = { sizeof(STARTUPINFO) };
